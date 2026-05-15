@@ -67,6 +67,3 @@ Mermaid diagrams in `docs/ARCHITECTURE.md` render natively on GitHub.
 ## Contributing
 
 Adaptations are welcome. The model is intentionally modular — every parameter is a variable, every stage is replaceable. If you build a variant, please document it.
-
-For substantive changes to the architecture, open an issue describing the change and the reasoning before sending a pull request.
-# web-cbthem
