@@ -6,8 +6,6 @@
 
 This document describes the conceptual architecture of a large-scale Computer-Based Test (CBT) Hybrid Examination system. It is a systems proposal, intended to be read, critiqued, forked, and adapted. It is not an implementation guide for any specific exam.
 
----
-
 ## A. Project overview
 
 ### A.1 What this is
@@ -39,8 +37,6 @@ This model attempts to reduce leak surface by:
 
 This is a neutral, open-source, technical proposal. Every parameter is a variable; every stage is replaceable. The goal is a shared vocabulary for reasoning about exam security and scale, not a single canonical implementation.
 
----
-
 ## B. Examination workflow overview
 
 The lifecycle progresses through six operational stages:
@@ -55,8 +51,6 @@ The lifecycle progresses through six operational stages:
 | 6 | **Execute** | At T−15, centre disables network and decrypts locally; session runs offline; OMR is collected after. |
 
 Each stage is independently swappable. The architecture is intentionally modular.
-
----
 
 ## C. Examination system architecture
 
@@ -157,8 +151,6 @@ OMR sheets are scanned in batch after the exam window:
 
 Because each set is uniquely hashed, the answer key lookup is deterministic and verifiable.
 
----
-
 ## D. Architecture diagrams
 
 ### D.1 Main pipeline (compile → generate → deliver)
@@ -237,8 +229,6 @@ flowchart TD
   Check -- "No" --> Emit
 ```
 
----
-
 ## E. Operational module map
 
 The system decomposes into the following conceptual modules. Each can be implemented independently.
@@ -256,8 +246,6 @@ The system decomposes into the following conceptual modules. Each can be impleme
 | **OMR Processing** | Post-session scan and digitisation. | Scoring against the answer key for the centre's set hash. |
 | **Evaluation Pipeline** | Aggregate, audit, publish. | Reconciliation with distribution log. |
 
----
-
 ## F. Behavioural and operational rules
 
 The system is governed by a small set of invariants:
@@ -270,8 +258,6 @@ The system is governed by a small set of invariants:
 - **Centre operational continuity.** A centre that loses connectivity *before T−60* still has its encrypted bundle prepositioned and can decrypt at T−15 with a key delivered via any working path. A centre that loses connectivity *after T−15* is unaffected — the session is designed to run offline.
 - **Hybrid execution constraint.** The terminal renders; the candidate answers on paper. Computers never capture, store, or transmit answers.
 - **Documentation-first structure.** Every module has a defined responsibility and a defined input/output. The architecture is meant to be inspected and modified, not treated as opaque.
-
----
 
 ## G. Deployment and implementation notes
 
@@ -305,8 +291,6 @@ These are conceptual assumptions, not prescriptive implementations.
 - The Scrambler can be unit-tested by feeding it pre-computed colliding seeds.
 - The centre execution layer can be simulated headlessly with a recorded OMR mock.
 
----
-
 ## H. Open-source and contribution framing
 
 This model is shared under the MIT License. The intent is:
@@ -317,7 +301,5 @@ This model is shared under the MIT License. The intent is:
 - **Future extensibility.** Likely extension surfaces include: stronger structural distinctness predicates in the Scrambler; richer metadata schemas in the Book; multi-tenant centre topologies; per-domain difficulty calibration during RNG draw.
 
 Examination systems are high-stakes infrastructure. This brief is shared in the spirit of open technical discourse — to surface ideas, invite critique, and lower the cost of reasoning carefully about a hard problem. It is not a claim of completeness.
-
----
 
 *Published as a conceptual systems proposal. Not affiliated with any organisation, board, or institution.*
