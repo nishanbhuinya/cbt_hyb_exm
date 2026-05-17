@@ -1,6 +1,6 @@
-# cbt_hyb_exm
+# CBT Hybrid Examination
 
-**CBT Hybrid Examination — a conceptual architecture for large-scale secure examinations.**
+> **A conceptual architecture for large-scale secure examinations.**
 
 This repository hosts the open-source conceptual model.
 The full architecture brief lives in **[`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)**.
